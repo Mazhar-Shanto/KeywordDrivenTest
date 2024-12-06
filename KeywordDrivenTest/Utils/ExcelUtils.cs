@@ -21,7 +21,13 @@ namespace KeywordDrivenTest.Utils
 
                     var columns = new List<string>();
                     foreach (DataColumn col in dataTable.Columns)
+                    {
+                        Console.WriteLine($"Column Name: {col.ColumnName}"); // Debug log
                         columns.Add(col.ColumnName);
+                    }
+
+                    if (!columns.Contains("Keyword"))
+                        throw new Exception("The 'Keyword' column is missing from the Excel file.");
 
                     for (int i = 1; i < dataTable.Rows.Count; i++)
                     {
@@ -36,5 +42,6 @@ namespace KeywordDrivenTest.Utils
 
             return testSteps;
         }
+
     }
 }
