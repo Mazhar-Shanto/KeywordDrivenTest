@@ -5,15 +5,11 @@ namespace KeywordDrivenTest.Drivers
 {
     public class DriverSetup
     {
+        private static IWebDriver driver;
+
         public static IWebDriver InitDriver()
         {
-            var options = new ChromeOptions();
-            options.AddArgument("--start-maximized");
-            IWebDriver driver = new ChromeDriver(options);
-            return driver;
-
-
-            /*if (_driver == null)
+            if (driver == null)
             {
                 ChromeOptions options = new ChromeOptions();
                 options.AddArgument("disable-notifications");  // Disable notification
@@ -26,15 +22,13 @@ namespace KeywordDrivenTest.Drivers
                 options.AddUserProfilePreference("autofill.profile_enabled", false);
 
                 // new DriverManager().SetUpDriver(new ChromeConfig());
-                _driver = new ChromeDriver(ChromeDriverService.CreateDefaultService(), options, TimeSpan.FromMinutes(3));
-                _driver.Manage().Window.Maximize();
+                driver = new ChromeDriver(ChromeDriverService.CreateDefaultService(), options, TimeSpan.FromMinutes(3));
+                driver.Manage().Window.Maximize();
                 // Configure implicit wait
-                _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(.3);
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(.3);
             }
-            return _driver;*/
 
-
-
+            return driver;
         }
 
         /*public static void QuitDriver()

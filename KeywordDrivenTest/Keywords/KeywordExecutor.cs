@@ -7,9 +7,9 @@ namespace KeywordDrivenTest.Keywords
     public class KeywordExecutor
     {
         private IWebDriver _driver;
-        private Dictionary<string, string> _locators;
+        private Dictionary<string, (string LocatorType, string LocatorValue)> _locators;
 
-        public KeywordExecutor(IWebDriver driver, Dictionary<string, string> locators)
+        public KeywordExecutor(IWebDriver driver, Dictionary<string, (string LocatorType, string LocatorValue)> locators)
         {
             _driver = driver;
             _locators = locators;
@@ -21,16 +21,14 @@ namespace KeywordDrivenTest.Keywords
 
             if (!string.IsNullOrEmpty(locatorKey) && _locators.ContainsKey(locatorKey))
             {
-                var locatorParts = _locators[locatorKey].Split('=');
-                var byType = locatorParts[0];
-                var byValue = locatorParts[1];
+                var (locatorType, locatorValue) = _locators[locatorKey];
 
-                element = byType switch
+                element = locatorType switch
                 {
-                    "id" => _driver.FindElement(By.Id(byValue)),
-                    "css" => _driver.FindElement(By.CssSelector(byValue)),
-                    "xpath" => _driver.FindElement(By.XPath(byValue)),
-                    _ => throw new Exception($"Invalid locator type: {byType}")
+                    "id" => _driver.FindElement(By.Id(locatorValue)),
+                    "css" => _driver.FindElement(By.CssSelector(locatorValue)),
+                    "xpath" => _driver.FindElement(By.XPath(locatorValue)),
+                    _ => throw new Exception($"Invalid locator type: {locatorType}")
                 };
             }
 

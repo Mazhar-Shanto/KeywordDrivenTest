@@ -5,7 +5,7 @@ using System.IO;
 
 namespace KeywordDrivenTest.Utils
 {
-    public class ExcelUtils
+    public class TestCaseReader
     {
         public static List<Dictionary<string, string>> ReadTestCases(string filePath)
         {
@@ -14,9 +14,22 @@ namespace KeywordDrivenTest.Utils
 
             using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
             {
-                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                var config = new ExcelReaderConfiguration
                 {
-                    var dataSet = reader.AsDataSet();
+                    FallbackEncoding = System.Text.Encoding.UTF8
+                };
+
+                using (var reader = ExcelReaderFactory.CreateReader(stream, config))
+                {
+                    // Configure to treat the first row as column names
+                    var dataSet = reader.AsDataSet(new ExcelDataSetConfiguration
+                    {
+                        ConfigureDataTable = _ => new ExcelDataTableConfiguration
+                        {
+                            UseHeaderRow = true
+                        }
+                    });
+
                     var dataTable = dataSet.Tables[0]; // First sheet
 
                     var columns = new List<string>();
@@ -29,7 +42,7 @@ namespace KeywordDrivenTest.Utils
                     if (!columns.Contains("Keyword"))
                         throw new Exception("The 'Keyword' column is missing from the Excel file.");
 
-                    for (int i = 1; i < dataTable.Rows.Count; i++)
+                    for (int i = 0; i < dataTable.Rows.Count; i++)
                     {
                         var row = dataTable.Rows[i];
                         var step = new Dictionary<string, string>();
@@ -42,6 +55,5 @@ namespace KeywordDrivenTest.Utils
 
             return testSteps;
         }
-
     }
 }

@@ -9,22 +9,21 @@ namespace KeywordDrivenTest.Tests
 {
     public class KeywordDrivenTest
     {
-        private IWebDriver _driver;
-        private Dictionary<string, string> _locators;
+        private static IWebDriver _driver;
         private KeywordExecutor _executor;
 
         [SetUp]
         public void Setup()
         {
             _driver = DriverSetup.InitDriver();
-            _locators = JsonUtils.ReadLocators("../../../Locators/Locators.json");
+            var _locators = LocatorReader.ReadLocators("../../../TestData/Locators.xlsx");
             _executor = new KeywordExecutor(_driver, _locators);
         }
 
         [Test]
         public void RunKeywordDrivenTest()
         {
-            var testCases = ExcelUtils.ReadTestCases("../../../TestData/TestCases.xlsx");
+            var testCases = TestCaseReader.ReadTestCases("../../../TestData/TestCases.xlsx");
 
             foreach (var testStep in testCases)
             {
