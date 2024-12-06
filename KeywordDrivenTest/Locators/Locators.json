@@ -1,0 +1,6 @@
+{
+  "usernameField": "id=Email",
+  "passwordField": "id=Password",
+  "loginButton": "xpath=//*[@id='LoginForm']/div[5]/div/button",
+  "welcomeMessage": "xpath=//h1[text()='Welcome']"
+}
