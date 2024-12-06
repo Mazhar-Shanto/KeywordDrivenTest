@@ -39,8 +39,8 @@ namespace KeywordDrivenTest.Utils
                         columns.Add(col.ColumnName);
                     }
 
-                    if (!columns.Contains("Keyword"))
-                        throw new Exception("The 'Keyword' column is missing from the Excel file.");
+                    if (!columns.Contains("ActionKeyword"))
+                        throw new Exception("The 'ActionKeyword' column is missing from the Excel file.");
 
                     for (int i = 0; i < dataTable.Rows.Count; i++)
                     {

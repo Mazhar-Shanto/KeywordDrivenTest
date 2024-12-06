@@ -10,11 +10,11 @@ namespace KeywordDrivenTest.Utils
 {
     internal class LocatorReader
     {
-        public static Dictionary<string, (string LocatorType, string LocatorValue)> ReadLocators(string filePath)
+        public static Dictionary<string, (string ElementType, string LocatorType, string LocatorValue)> ReadLocators(string filePath)
         {
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 
-            var locators = new Dictionary<string, (string LocatorType, string LocatorValue)>();
+            var locators = new Dictionary<string, (string ElementType, string LocatorType, string LocatorValue)>();
 
             using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
             {
@@ -32,11 +32,12 @@ namespace KeywordDrivenTest.Utils
 
                     foreach (DataRow row in table.Rows)
                     {
-                        var locatorName = row["locatorName"].ToString();
-                        var locatorType = row["locatorType"].ToString();
-                        var locatorValue = row["locator"].ToString();
+                        var locatorName = row["LocatorName"].ToString();
+                        var elementType = row["ElementType"].ToString();
+                        var locatorType = row["LocatorType"].ToString();
+                        var locatorValue = row["Locator"].ToString();
 
-                        locators[locatorName] = (locatorType, locatorValue);
+                        locators[locatorName] = (elementType, locatorType, locatorValue);
                     }
                 }
             }
