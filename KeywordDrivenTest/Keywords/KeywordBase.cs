@@ -2,14 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
 using SAFV.Drivers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using KeywordDrivenTest.Utils;
-using OpenQA.Selenium.BiDi.Modules.BrowsingContext;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 namespace KeywordDrivenTest.Keywords
 {
@@ -590,6 +583,19 @@ namespace KeywordDrivenTest.Keywords
                 }
 
                 maxTry--;
+            }
+        }
+
+        public void VerifyPageTitle(string searchText)
+        {
+            string pageTitle = _driver.Title.ToLower();
+            if (pageTitle.Contains(searchText.ToLower()))
+            {
+                Reporting.SetStepStatusPass($"Current page '{searchText}'", _driver);
+            }
+            else
+            {
+                Reporting.SetStepStatusWarning($"Current page '{searchText}'", _driver);
             }
         }
 
