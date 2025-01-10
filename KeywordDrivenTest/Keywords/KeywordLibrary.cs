@@ -6,12 +6,12 @@ using KeywordDrivenTest.Utils;
 
 namespace KeywordDrivenTest.Keywords
 {
-    public class KeywordBase
+    public class KeywordLibrary
     {
         public static IWebDriver _driver;
         public static WebDriverWait _wait;
 
-        public KeywordBase(IWebDriver driver)
+        public KeywordLibrary(IWebDriver driver)
         {
             _driver = driver;
             _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));

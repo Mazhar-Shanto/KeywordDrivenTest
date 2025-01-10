@@ -2,7 +2,7 @@
 
 namespace KeywordDrivenTest.Keywords
 {
-    public class KeywordExecutor : KeywordBase
+    public class KeywordExecutor : KeywordLibrary
     {
         //private IWebDriver _driver;
         private Dictionary<string, (string ElementType, string LocatorType, string LocatorValue)> _locators;
