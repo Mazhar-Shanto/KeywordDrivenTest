@@ -17,7 +17,7 @@ namespace SAFV.Drivers
             var projectRoot = Helper.GetProjectRoot();
             var dateTime = DateTime.Now.ToString("dd-MM-yyyy_HH-mm");
             var fileName = "TestReport_" + dateTime + ".html";
-            var filePath = Path.Combine(projectRoot, "Report", fileName);
+            var filePath = Path.Combine(projectRoot, "_Report", fileName);
             Reporter = new ExtentSparkReporter(filePath);
             Reporter.Config.DocumentTitle = "Automation Testing Report";
             Reporter.Config.ReportName = "Regression Testing";

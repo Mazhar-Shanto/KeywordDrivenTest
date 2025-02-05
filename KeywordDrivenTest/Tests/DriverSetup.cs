@@ -4,7 +4,7 @@ using SAFV.Drivers;
 using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager;
 
-namespace KeywordDrivenTest.Drivers
+namespace KeywordDrivenTest.Tests
 {
     public class DriverSetup
     {

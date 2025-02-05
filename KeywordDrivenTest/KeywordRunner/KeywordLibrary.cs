@@ -3,22 +3,23 @@ using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
 using SAFV.Drivers;
 using KeywordDrivenTest.Utils;
+using KeywordDrivenTest.Source.Components;
 
-namespace KeywordDrivenTest.Keywords
+namespace KeywordDrivenTest.KeywordRunner
 {
-    public class KeywordLibrary
+    public class KeywordLibrary : BaseComponent
     {
         public static IWebDriver _driver;
         public static WebDriverWait _wait;
 
-        public KeywordLibrary(IWebDriver driver)
+        public KeywordLibrary(IWebDriver driver) : base(driver) 
         {
             _driver = driver;
             _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
         }
 
 
-        public static IWebElement WaitAndFindElement(By by)
+        /*public static IWebElement WaitAndFindElement(By by)
         {
             IWebElement element = null;
             int maxTry = 10;
@@ -34,8 +35,8 @@ namespace KeywordDrivenTest.Keywords
 
                     //((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
 
-                    /*Actions actions = new Actions(_driver);
-                    actions.MoveToElement(element).Perform();*/
+                    *//*Actions actions = new Actions(_driver);
+                    actions.MoveToElement(element).Perform();*//*
                 }
                 catch (Exception)
                 {
@@ -89,7 +90,7 @@ namespace KeywordDrivenTest.Keywords
                 }
             }
             return elements;
-        }
+        }*/
 
 
         public void Click(IWebElement element)
@@ -147,7 +148,7 @@ namespace KeywordDrivenTest.Keywords
         {
             int maxTry = 5;
             string label = "";
-            string previousState = element.GetAttribute("aria-checked");
+            string previousState = element.GetDomAttribute("aria-checked");
 
             if (s.ToLower() == "yes" || s == "true" || s == "active" || s == "1")
             {
@@ -476,7 +477,7 @@ namespace KeywordDrivenTest.Keywords
             {
                 for (int j = 0; j < countEL; j++)
                 {
-                    string value = elementList.ElementAt(j).GetAttribute("value");
+                    string value = elementList.ElementAt(j).GetDomAttribute("value");
                     if (value.Contains(searchValue.ElementAt(i)))
                     {
                         Actions actions = new Actions(_driver);

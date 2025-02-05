@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace KeywordDrivenTest.Keywords
+namespace KeywordDrivenTest.KeywordRunner
 {
     public class KeywordExecutor : KeywordLibrary
     {
@@ -32,6 +32,10 @@ namespace KeywordDrivenTest.Keywords
 
             try
             {
+                if (elementName.Equals("ConfidentialMode")) {
+               Thread.Sleep
+                        (100);
+                }
                 if (!string.IsNullOrEmpty(elementName) && _locators.ContainsKey(elementName))
                 {
                     var (elementType, locatorType, locatorValue) = _locators[elementName];
@@ -73,6 +77,9 @@ namespace KeywordDrivenTest.Keywords
                         break;
                     case "Click":
                         Click(element);
+                        break;
+                    case "Select":
+                        Select(element, testData);
                         break;
                     case "SelectOption":
                         SelectOption(elements, testData);

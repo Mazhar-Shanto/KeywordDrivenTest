@@ -1,24 +1,18 @@
-﻿using KeywordDrivenTest.Drivers;
-using KeywordDrivenTest.Keywords;
+﻿using KeywordDrivenTest.KeywordRunner;
 using KeywordDrivenTest.Utils;
 using SAFV.Drivers;
 
 namespace KeywordDrivenTest.Tests
 {
-    public class KeywordDrivenTest : DriverSetup
+    public class BaseTest : DriverSetup
     {
         //private static IWebDriver _driver;
         private KeywordExecutor _executor;
 
-        [Test]
-        public void RunKeywordDrivenTest()
+        public void RunKeywordDrivenTest(string locatorsFilePath, string testCaseFilePath, string excelReportFilePath)
         {
-            Reporting.CreateTest("RunKeywordDrivenTest");
 
             var projectRoot = Helper.GetProjectRoot();
-            var locatorsFilePath = Path.Combine(projectRoot, "TestData/Locators.xlsx");
-            var testCaseFilePath = Path.Combine(projectRoot, "TestData/TestCases.xlsx");
-            var excelReportFilePath = Path.Combine(projectRoot, "Report/ExcelReport.xlsx");
 
             var _locators = LocatorReader.ReadLocators(locatorsFilePath);
             _executor = new KeywordExecutor(_driver, _locators);
@@ -42,6 +36,27 @@ namespace KeywordDrivenTest.Tests
             }
             WriteExcelReport.WriteTestResults(excelReportFilePath, testResult);
             Console.WriteLine("end");
+        }
+
+        public void Login()
+        {
+
+            var projectRoot = Helper.GetProjectRoot();
+            var locatorsFilePath = Path.Combine(projectRoot, "_TestData/Locators_Login.xlsx");
+            var testCaseFilePath = Path.Combine(projectRoot, "_TestData/TestCase_1_Login.xlsx");
+            var excelReportFilePath = Path.Combine(projectRoot, "_Report/ExcelReport_Login.xlsx");
+
+            RunKeywordDrivenTest(locatorsFilePath, testCaseFilePath, excelReportFilePath);
+        }
+
+        public bool VerifyPageTitle(string pageTitle)
+        {
+            string getPageTitle = _driver.Title;
+
+            if (getPageTitle != null && getPageTitle == pageTitle)
+                return true;
+            else 
+                return false;
         }
     }
 }

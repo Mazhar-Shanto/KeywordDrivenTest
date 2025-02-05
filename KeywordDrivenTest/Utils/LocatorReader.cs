@@ -30,7 +30,9 @@ namespace KeywordDrivenTest.Utils
                         var locatorName = row["LocatorName"].ToString();
                         var elementType = row["ElementType"].ToString();
                         var locatorType = row["LocatorType"].ToString();
-                        var locatorValue = row["Locator"].ToString();
+                        var locatorValue = row["Locator"].ToString()
+                            .Replace("\\\"", "\"") // Remove extra backslashes
+                            .Trim(); // Ensure no leading/trailing spaces
 
                         locators[locatorName] = (elementType, locatorType, locatorValue);
                     }
