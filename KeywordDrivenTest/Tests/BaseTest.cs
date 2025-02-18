@@ -42,9 +42,9 @@ namespace KeywordDrivenTest.Tests
         {
 
             var projectRoot = Helper.GetProjectRoot();
-            var locatorsFilePath = Path.Combine(projectRoot, "_TestData/Locators_Login.xlsx");
-            var testCaseFilePath = Path.Combine(projectRoot, "_TestData/TestCase_1_Login.xlsx");
-            var excelReportFilePath = Path.Combine(projectRoot, "_Report/ExcelReport_Login.xlsx");
+            var locatorsFilePath = Path.Combine(projectRoot, "_TestData/Login_Locators.xlsx");
+            var testCaseFilePath = Path.Combine(projectRoot, "_TestData/Login_TestCase.xlsx");
+            var excelReportFilePath = Path.Combine(projectRoot, "_Report/Login_ExcelReport.xlsx");
 
             RunKeywordDrivenTest(locatorsFilePath, testCaseFilePath, excelReportFilePath);
         }

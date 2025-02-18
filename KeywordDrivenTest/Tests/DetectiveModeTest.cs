@@ -12,9 +12,9 @@ namespace KeywordDrivenTest.Tests
             Reporting.CreateTest("CreateCaseFromIncidentsTest");
 
             var projectRoot = Helper.GetProjectRoot();
-            var locatorsFilePath = Path.Combine(projectRoot, "_TestData/CreateCaseFromIncidents/Locators_CreateCaseFromIncidents.xlsx");
-            var testCaseFilePath = Path.Combine(projectRoot, "_TestData/CreateCaseFromIncidents/TestCase_2_CreateCaseFromIncidents.xlsx");
-            var excelReportFilePath = Path.Combine(projectRoot, "_Report/CreateCaseFromIncidents/ExcelReport_CreateCaseFromIncidents.xlsx");
+            var locatorsFilePath = Path.Combine(projectRoot, "_TestData/CreateCaseFromIncidents/CreateCaseFromIncidents_Locators.xlsx");
+            var testCaseFilePath = Path.Combine(projectRoot, "_TestData/CreateCaseFromIncidents/CreateCaseFromIncidents_TestCase.xlsx");
+            var excelReportFilePath = Path.Combine(projectRoot, "_Report/CreateCaseFromIncidents/CreateCaseFromIncidents_ExcelReport.xlsx");
 
             NavMenu navMenu = new NavMenu(_driver);
 
